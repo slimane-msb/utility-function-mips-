@@ -1,0 +1,61 @@
+;
+
+
+x= 1001 0000;
+y= 1001 000a;
+z= 1001 0010;
+A= 1001 0014;
+B= 0x10010018;
+c= 0x10010020;
+D= 0x10010024;
+E= 0x10010030;
+
+int: 4
+float:4
+char: 1
+short: 2
+double: 8
+
+les regles d'alignement:
+
+1/ 
+9 char (1 oct *9) => le dernier chart prend l'adresse: 1001 0008
+et le short prend 2oct donc l'adresse doit etre un miltiple de 2
+ce qui explique l'adresse de la la var short en  1001 000a et pas a 1001 0009
+
+
+
+2/
+2 short donc l'adresse du dernier short est: 1001 000a + 2oct = 1001 000c la prochaine var est int (4oct) donc a l'adresse 1001 0010 car (1001 001e 1001 0010f ) sont pas multiple de 4. 
+
+on suit le meme raisonement on trouve que tout les trou de memoire dans ces adresse suivante: 
+
+1001 0009
+
+1001 001e
+1001 001f
+
+pas de trou entre Z et A 
+
+pas de trou entre A et B car ...8 et multiple de 8(double)
+
+pas de trou enntre B et C car ...8->...f= prochain dans...0 (mutiple de 4)
+
+pas de trou entre C et D ..0->3=> prochain dans ...4
+
+pas de trou entre D et E car "hello world" a 12 char inclus le '\0' donc la prochaine var est dans .....0 qui est multiple de 1
+
+
+
+
+
+list finale de trou de memoire: 
+
+1001 0009
+
+1001 001e
+1001 001f
+
+
+
+

@@ -1,0 +1,15 @@
+pour le mips32 il s'execute en little endian 
+
+car: 
+
+prenant la variable z par exemple:
+1. z est du type int ( 4 oct)
+2. en little end on aura:  
+
+0x10010010  => ac
+0x10010011  => ef
+0x10010012  => cd
+0x10010013  => ab
+
+
+3. ce qu'on remarque dans zone data value(+10)=(0xabcdefac) et donc mips32 utilise little endian "qui commence par l'adresse de l'octet de poids FAIBLE " 
